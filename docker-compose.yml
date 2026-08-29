@@ -15,3 +15,4 @@ services:
   curl:
     image: curlimages/curl
     command: ifconfig.me
+    network_mode: "service:vpn"
