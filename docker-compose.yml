@@ -1,0 +1,17 @@
+services:
+  vpn:
+    build:
+      context: ./vpn
+    cap_add:
+      - NET_ADMIN
+      - SYS_MODULE
+    devices:
+      - /dev/net/tun:/dev/net/tun
+    sysctls:
+      net.ipv4.conf.all.src_valid_mark: "1"
+    #ports: forward ports in this clause for other containers that join the namespace
+    # network_mode: "service:vpn" for the other containers
+
+  curl:
+    image: curlimages/curl
+    command: ifconfig.me
